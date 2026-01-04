@@ -32,7 +32,11 @@ COPY . /var/www
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 # Install Node dependencies and build assets (Tailwind CSS)
-RUN npm ci && npm run build
+RUN npm install
+RUN npm run build
+
+# Verify build output exists
+RUN ls -la /var/www/public/build || echo "Build directory not found"
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www \
