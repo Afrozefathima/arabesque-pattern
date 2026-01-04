@@ -6,28 +6,29 @@ use App\Http\Controllers\Api\InquiryController;
 use App\Http\Controllers\Api\SupplierController;
 use App\Http\Controllers\Api\SupplierPartController;
 use App\Http\Controllers\Api\AdminController;
+use App\Http\Controllers\Api\CarController;
 
 Route::get('/test', function () {
     return response()->json(['message' => 'API works']);
 });
 
-Route::get('/parts',[PartController::class, 'index']); //works
-Route::get('/parts/{id}',[PartController::class, 'show']); //works
-Route::post('/parts',[PartController::class, 'store']);   //works
-Route::put('/parts/{id}', [PartController::class, 'update']);  //works
-Route::delete('/parts/{id}', [PartController::class, 'destroy']);  //works
+Route::get('/parts',[PartController::class, 'index']);
+Route::get('/parts/{id}',[PartController::class, 'show']); 
+Route::post('/parts',[PartController::class, 'store']);  
+Route::put('/parts/{id}', [PartController::class, 'update']);  
+Route::delete('/parts/{id}', [PartController::class, 'destroy']);  
 
 
-Route::get('/inquiries', [InquiryController::class, 'index']);      // GET all inquiries //works
-Route::get('/inquiries/{id}', [InquiryController::class, 'show']); // GET single inquiry //works
-Route::post('/inquiries', [InquiryController::class, 'store']);    // POST new inquiry //works
-Route::put('/inquiries/{id}', [InquiryController::class, 'update']); // PUT update inquiry //works
-Route::delete('/inquiries/{id}', [InquiryController::class, 'destroy']); // DELETE inquiry //works
+Route::get('/inquiries', [InquiryController::class, 'index']);      
+Route::get('/inquiries/{id}', [InquiryController::class, 'show']); 
+Route::post('/inquiries', [InquiryController::class, 'store']);    
+Route::put('/inquiries/{id}', [InquiryController::class, 'update']); 
+Route::delete('/inquiries/{id}', [InquiryController::class, 'destroy']); 
 
 
 // Authentication
-Route::post('/suppliers/register', [SupplierController::class, 'register']); //works
-Route::post('/suppliers/login', [SupplierController::class, 'login']); //works
+Route::post('/suppliers/register', [SupplierController::class, 'register']); 
+Route::post('/suppliers/login', [SupplierController::class, 'login']); 
 
 // Protected routes
 Route::middleware('auth:sanctum')->group(function () { //works
@@ -59,4 +60,5 @@ Route::middleware('auth:sanctum')->group(function () { //works
     Route::get('/admin/supplier-parts', [AdminController::class, 'listSupplierParts']);
     Route::post('/admin/supplier-parts/{id}/verify', [AdminController::class, 'verifySupplierPart']);
 });
+
 

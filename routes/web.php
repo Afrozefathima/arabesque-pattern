@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\Api\SupplierController;
+use App\Http\Controllers\CarController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
@@ -21,3 +22,9 @@ Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name
 Route::get('/', function () {
     return view('pages.home');
 });
+
+Route::get('/find-parts', [CarController::class, 'index'])->name('find-parts.index');
+
+
+Route::get('/find-parts/{make}', [CarController::class, 'findByMake'])->name('find-parts');
+
